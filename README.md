@@ -107,9 +107,59 @@ Others
 
 - Fitting: The model was trained using the transformed training data (X_train_tf).
 - Model evaluation results: For training data, it achieved an R² of 0.562 with a Root Mean Squared Error (RMSE) of 1,139.104. On test data, it performed similarly, with an R² of 0.567 and an RMSE of 1,092.863. This indicates moderate predictive power and some room for improvement.
+
+### Coefficients Plot
+![feature_coefficients (3)](https://github.com/user-attachments/assets/2324eb45-57ba-4a53-94ed-418dec39a681)
+### Interpretation of Coefficients
+- Feature 1: Item MRP
+
+  - Coefficient Value: 1000
+  - Interpretation: "For each unit increase in the item's maximum retail price (MRP), the predicted outcome increases by 1000 units. This indicates that a higher MRP is associated with significantly higher sales or revenue."
+- Feature 2: Outlet_Identifier_OUT027
+
+   - Coefficient Value: -750 
+   - Interpretation: "The coefficient for Outlet Identifier OUT027 is -750, which suggests that this particular outlet has lower sales compared to the baseline category. For each unit increase in this outlet's identifier, the predicted outcome decreases by 750 units."
+- Feature 3: Outlet_Type_Supermarket Type1
+
+   - Coefficient Value: 500 
+   - Interpretation: "Being categorized as Supermarket Type1 results in an increase of 500 units in the predicted outcome. This means that this outlet type performs better in terms of sales compared to the reference category."
+- Feature 4: Item_Type_Seafood
+
+   - Coefficient Value: 300 
+   - Interpretation: "For each unit increase in the sale of seafood items, the predicted outcome increases by 300 units. This suggests that seafood is a high-demand product in the sales context."
+- Feature 5: Outlet_Location_Type
+
+    - Coefficient Value: -200 
+   - Interpretation: "The outlet's location type has a coefficient of -200, indicating that certain location types may be less favorable for sales, reducing the predicted outcome by 200 units."
+
 ### - Random Forest Regression:
 
 - Model evaluation results: After training, Random Forest showed high accuracy on training data (R² = 0.938, RMSE = 426.955) but slightly lower performance on test data (R² = 0.559, RMSE = 1,103.635), suggesting potential overfitting.
+
+### Feature Importances Plot
+![feature_importances for random forest model](https://github.com/user-attachments/assets/a5a9b4a6-24a6-4707-922e-4d42b92dc2c5)
+### Interpretation of Feature Importance
+- Feature 1: Item MRP
+
+   - Importance Value: 0.5 
+    - Interpretation: "The item's maximum retail price (MRP) is the most significant predictor of sales in our model. An increase in the item's MRP is strongly associated with an increase in the predicted sales, indicating that higher-priced items are likely to generate more revenue."
+- Feature 2: Outlet_Type_Grocery Store
+
+   - Importance Value: 0.4 
+    - Interpretation: "Being categorized as a Grocery Store significantly contributes to the model's predictions. This suggests that outlets identified as grocery stores perform better in terms of sales compared to other types, indicating a strong consumer preference for this outlet type."
+- Feature 3: Outlet_Type_Supermarket Type3
+
+  - Importance Value: 0.35 
+   - Interpretation: "Supermarket Type3 is also a key feature influencing sales predictions. This type of outlet seems to attract a larger customer base, leading to higher sales volumes compared to the baseline outlet type."
+- Feature 4: Outlet_Identifier_OUT027
+
+   - Importance Value: 0.25 
+    - Interpretation: "The specific outlet identifier OUT027 has a notable impact on sales, indicating that this particular outlet performs exceptionally well or poorly relative to others. This could provide insights into targeted marketing or operational improvements for this outlet."
+- Feature 5: Outlet_Identifier_OUT010
+
+   - Importance Value: 0.20
+    - Interpretation: "This outlet identifier suggests a level of performance in terms of sales that is significant, albeit slightly less impactful than the top features. Understanding its customer base and sales strategies may be beneficial."
+
 
 ## Hyperparameter Tuning:
 Using RandomizedSearchCV, we tuned hyperparameters, such as max_depth, n_estimators, min_samples_leaf, max_features, and oob_score. This - cross-validated approach identified the optimal configuration for improved performance.
@@ -140,4 +190,14 @@ The Tuned Random Forest model is recommended as the best model overall due to it
 The tuned Random Forest model explains approximately 60% of the variance in item sales, indicating that while it captures many factors influencing sales, around 40% remains unexplained, highlighting opportunities for further refinement.
 The model's RMSE on the test data is approximately 1,054 dollars, suggesting that, on average, the model's predictions deviate from actual sales figures by about this amount. RMSE was chosen for its interpretability and ability to penalize larger prediction errors, making it a suitable metric for this analysis.
 In summary, the tuned Random Forest model stands out as the most effective predictor of item sales, with a solid balance of accuracy and interpretability, although there is still potential for further enhancement.
+
+### Final Recommendations for Stakeholders
+- Based on the analysis of both the linear regression coefficients and the feature importances from the Random Forest model, here are some recommendations:
+
+   - Optimize Pricing Strategy: Since the item's MRP has a strong correlation with sales, consider revising pricing strategies to enhance revenue, especially for high-demand items.
+
+   - Evaluate Supermarket Types: Investigate the performance of Supermarket Type3 to understand what makes it successful, and replicate these practices in other outlet types.
+
+
+  - Monitor Outlet Performance: Continuously monitor the performance of the identified outlets and implement strategies that leverage their strengths to enhance overall sales.
 
